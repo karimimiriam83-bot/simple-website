@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miriam's Curtains & Fashion</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      background: #f7f5ff;
+    }
+
+    header {
+      background: purple;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Logo Section */
+    #logo {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      background: black;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: gold;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    /* Banner */
+    .banner {
+      background: url('https://i.imgur.com/8s1YfNI.jpeg') center/cover no-repeat;
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 2px 2px 5px black;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    /* Sections */
+    section {
+      padding: 40px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: purple;
+      margin-bottom: 20px;
+    }
+
+    /* Products */
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      border: 2px solid #e3d7ff;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .price {
+      color: green;
+      font-weight: bold;
+    }
+
+    /* Contact Form */
+    form {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    input, textarea, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: purple;
+      color: white;
+      font-size: 16px;
+      border: none;
+    }
+
+    button:hover {
+      background: black;
+    }
+
+    /* Footer */
+    footer {
+      background: black;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: gold;
+      text-decoration: none;
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 24px;
+      text-decoration: none;
+    }
+
+    /* Back to Top Button */
+    #back-to-top {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: purple;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      display: none;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    #back-to-top.show {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <img id="logo" src="https://i.imgur.com/bVR7KqS.png" alt="Logo">
+    <h1>Miriam’s Curtains & Fashion</h1>
+    <p>Quality Curtains • Beddings • School Bags • Baby Clothes • Tailoring</p>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#products">Products</a>
+    <a href="#curtains">Curtains</a>
+    <a href="#beddings">Beddings</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- BANNER -->
+  <div class="banner">Beautiful • Modern • Affordable</div>
+
+  <!-- MAIN PRODUCTS -->
+  <section id="products">
+    <h2>Our Products</h2>
+    <div class="grid">
+
+      <div class="card" data-aos="fade-up">
+        <img src="https://i.imgur.com/tYcJrsl.jpeg" alt="Curtains">
+        <h3>Modern Curtains</h3>
+        <p class="price">KSh 1,500 - 7,000</p>
+      </div>
+
+      <div class="card" data-aos="fade-up">
+        <img src="https://i.imgur.com/9EEVnSR.jpeg" alt="School Bags">
+        <h3>School Bags</h3>
+        <p class="price">KSh 800 - 2,500</p>
+      </div>
+
+      <div class="card" data-aos="fade-up">
+        <img src="https://i.imgur.com/IQIzVxU.jpeg" alt="Baby Clothes">
+        <h3>Newborn Baby Clothes</h3>
+        <p class="price">KSh 300 - 2,000</p>
+      </div>
+
+      <div class="card" data-aos="fade-up">
+        <img src="https://i.imgur.com/qWL58Zt.jpeg" alt="Beddings">
+        <h3>Duvets & Beddings</h3>
+        <p class="price">KSh 1,800 - 4,500</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form action="#">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <textarea rows="4" placeholder="Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>📞 Call: <a href="tel:0795286190">0795286190</a></p>
+    <p>📧 Email: <a href="mailto:karimimiriam83@gmail.com">karimimiriam83@gmail.com</a></p>
+    <p>💬 WhatsApp: <a href="https://wa.me/254795286190" target="_blank">Chat on WhatsApp</a></p>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/254795286190" class="whatsapp-float" target="_blank">💬</a>
+  <button id="back-to-top">⬆</button>
+
+  <!-- AOS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Show back to top button
+    window.addEventListener("scroll", () => {
+      const btn = document.getElementById("back-to-top");
+      if (window.scrollY > 300) {
+        btn.classList.add("show");
+      } else {
+        btn.classList.remove("show");
+      }
+    });
+
+    document.getElementById("back-to-top").onclick = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+  </script>
+
+</body>
+</html>

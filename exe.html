@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miriam’s Home Decor</title>
+
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* ---------- GENERAL ---------- */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      background-color: #fffafc;
+      color: #333;
+    }
+    img { max-width: 100%; height: auto; border-radius: 10px; }
+
+    /* ---------- HEADER ---------- */
+    header {
+      background-color: purple;
+      color: gold;
+      text-align: center;
+      padding: 20px;
+    }
+    header img.logo { width: 90px; height: 90px; border-radius: 50%; border: 3px solid gold; }
+    header h1 { margin: 10px 0 5px; font-size: 28px; }
+    header p { font-size: 16px; color: white; }
+
+    /* ---------- NAVIGATION ---------- */
+    nav {
+      background-color: black;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .nav-links a:hover { color: gold; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      transition: all 0.3s;
+    }
+
+    /* ---------- BANNER ---------- */
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      background-image: url('banner.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .banner-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: gold;
+      padding: 15px 25px;
+      border-radius: 10px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about {
+      background-color: #f8f0fa;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .about h2 { color: purple; margin-bottom: 20px; }
+    .about p { max-width: 700px; margin: 0 auto; font-size: 17px; line-height: 1.6; color: #444; }
+
+    /* ---------- GALLERY ---------- */
+    .gallery { background-color: #fff; padding: 40px 20px; text-align: center; }
+    .gallery h2 { color: purple; margin-bottom: 20px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      justify-content: center;
+    }
+    .gallery-grid img {
+      width: 100%;
+      border: 3px solid gold;
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    /* ---------- REVIEWS ---------- */
+    .reviews { background-color: #f8f0fa; padding: 40px 20px; text-align: center; }
+    .reviews h2 { color: purple; margin-bottom: 25px; }
+    .review-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      justify-content: center;
+    }
+    .review-item {
+      background-color: #fff;
+      border: 2px solid gold;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: left;
+      transition: transform 0.2s;
+    }
+    .review-item:hover { transform: scale(1.03); }
+    .review-item p { font-size: 15px; color: #444; margin-bottom: 10px; }
+    .review-item .reviewer { font-weight: bold; color: purple; }
+
+    /* ---------- PRODUCTS ---------- */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      justify-content: center;
+    }
+    .item {
+      background-color: #f8f0fa;
+      border: 2px solid gold;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .item:hover { transform: scale(1.03); }
+    .item h3 { color: purple; margin: 10px 0 5px; }
+    .item p { color: #444; font-size: 15px; }
+    .buy-btn {
+      background-color: gold;
+      color: black;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+    .buy-btn:hover { background-color: #e6b800; }
+
+    /* ---------- CONTACT FORM ---------- */
+    .contact {
+      background: linear-gradient(135deg, #f8f0fa, #fff0ff);
+      padding: 50px 20px;
+      text-align: center;
+      border-top: 3px solid gold;
+      border-bottom: 3px solid gold;
+    }
+    .contact h2 { color: purple; margin-bottom: 30px; }
+    .contact form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border: 2px solid gold;
+    }
+    .input-container { position: relative; margin-bottom: 15px; }
+    .input-container .material-icons {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: purple;
+      font-size: 22px;
+    }
+    .contact input, .contact textarea {
+      width: 100%;
+      padding: 12px 12px 12px 40px;
+      border: 2px solid gold;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    .contact input:focus, .contact textarea:focus {
+      outline: none;
+      border-color: purple;
+      box-shadow: 0 0 8px rgba(128,0,128,0.3);
+    }
+    .contact button {
+      background-color: gold;
+      color: black;
+      padding: 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .contact button:hover {
+      background-color: purple;
+      color: gold;
+      transform: scale(1.05);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background-color: purple;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    footer a { color: gold; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ---------- FLOATING WHATSAPP ---------- */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 28px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    /* ---------- BACK TO TOP BUTTON ---------- */
+    #back-to-top {
+      position: fixed;
+      bottom: 90px; /* above WhatsApp */
+      right: 20px;
+      background-color: purple;
+      color: gold;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 101;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    #back-to-top.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #back-to-top:hover {
+      animation: bounce 0.5s;
+      transform: translateY(0);
+      opacity: 0.9;
+    }
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      25% { transform: translateY(-8px); }
+      50% { transform: translateY(0); }
+      75% { transform: translateY(-4px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: black;
+        flex-direction: column;
+        width: 200px;
+        display: none;
+      }
+      .nav-links.active { display: flex; }
+      .hamburger { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <img src="logo.png" alt="Business Logo" class="logo" data-aos="zoom-in">
+    <h1 data-aos="fade-down">Miriam’s Home Decor</h1>
+    <p data-aos="fade-up">Beautiful Curtains, Bedding & Baby Clothes</p>
+  </header>
+
+  <!-- NAV -->
+  <nav data-aos="fade-in">
+    <div class="nav-container">
+      <div class="hamburger" id="hamburger">
+        <div></div><div></div><div></div>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BANNER -->
+  <div class="banner" data-aos="fade-up">
+    <div class="banner-text">Transform Your Home with Style & Comfort ✨</div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="about" data-aos="fade-up">
+    <h2>About Us</h2>
+    <p>
+      Welcome to <strong>Miriam’s Home Decor</strong> — your trusted shop for stylish home essentials in Kenya.  
+      We specialize in <strong>modern curtains, bedding, duvets, school bags, and newborn baby clothes</strong>.  
+      We also offer <strong>custom tailoring</strong> for curtains to match your style.
+    </p>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="gallery">
+    <h2 data-aos="fade-up">Gallery</h2>
+    <div class="gallery-grid">
+      <img src="gallery1.jpg" alt="Curtain Design" data-aos="fade-up">
+      <img src="gallery2.jpg" alt="Bedding Display" data-aos="fade-up" data-aos-delay="100">
+      <img src="gallery3.jpg" alt="Baby Clothes" data-aos="fade-up" data-aos-delay="200">
+      <img src="gallery4.jpg" alt="School Bags" data-aos="fade-up" data-aos-delay="300">
+      <img src="gallery5.jpg" alt="Tailored Curtains" data-aos="fade-up" data-aos-delay="400">
+      <img src="gallery6.jpg" alt="Home Decor Showcase" data-aos="fade-up" data-aos-delay="500">
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="reviews">
+    <h2 data-aos="fade-up">Customer Reviews</h2>
+    <div class="review-list">
+      <div class="review-item" data-aos="fade-right"><p>"I love my new curtains!"</p><p class="reviewer">— Sarah M.</p></div>
+      <div class="review-item" data-aos="fade-right" data-aos-delay="100"><p>"Beautiful baby clothes!"</p><p class="reviewer">— Jane K.</p></div>
+      <div class="review-item" data-aos="fade-right" data-aos-delay="200"><p>"The bedding is so soft!"</p><p class="reviewer">— Peter L.</p></div>
+      <div class="review-item" data-aos="fade-right" data-aos-delay="300"><p>"Excellent service and fast delivery."</p><p class="reviewer">— Mary W.</p></div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <h2 data-aos="fade-up">Our Products</h2>
+    <div class="products">
+      <div class="item" data-aos="zoom-in"><img src="curtains.jpg" alt="Curtains"><h3>Modern Curtains</h3><p>Custom-made and elegant curtain designs.</p><a href="https://wa.me/254795286190" target="_blank"><button class="buy-btn">Buy Now on WhatsApp</button></a></div>
+      <div class="item" data-aos="zoom-in" data-aos-delay="100"><img src="beddings.jpg" alt="Beddings"><h3>Beddings & Duvets</h3><p>Soft, stylish, and luxurious beddings.</p><a href="https://wa.me/254795286190" target="_blank"><button class="buy-btn">Buy Now on WhatsApp</button></a></div>
+      <div class="item" data-aos="zoom-in" data-aos-delay="200"><img src="baby-clothes.jpg" alt="Baby Clothes"><h3>Newborn Baby Clothes</h3><p>Comfortable and cute clothing for little ones.</p><a href="https://wa.me/254795286190" target="_blank"><button class="buy-btn">Buy Now on WhatsApp</button></a></div>
+      <div class="item" data-aos="zoom-in" data-aos-delay="300"><img src="school-bags.jpg" alt="School Bags"><h3>School Bags</h3><p>Trendy, durable, and affordable school bags.</p><a href="https://wa.me/254795286190" target="_blank"><button class="buy-btn">Buy Now on WhatsApp</button></a></div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section id="contact" class="contact" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <form action="mailto:karimimiriam83@gmail.com" method="post" enctype="text/plain">
+      <div class="input-container">
+        <span class="material-icons">person</span>
+        <input type="text" name="name" placeholder="Your Name" required>
+      </div>
+      <div class="input-container">
+        <span class="material-icons">email</span>
+        <input type="email" name="email" placeholder="Your Email" required>
+      </div>
+      <div class="input-container">
+        <span class="material-icons">message</span>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      </div>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>📞 Call: <a href="tel:0795286190">0795286190</a></p>
+    <p>📧 Email: <a href="mailto:karimimiriam83@gmail.com">karimimiriam83@gmail.com</a></p>
+    <p>💬 WhatsApp: <a href="https://wa.me/254795<!-- FOOTER -->
+        <footer>
+          <p>📞 Call: <a href="tel:0795286190">0795286190</a></p>
+          <p>📧 Email: <a href="mailto:karimimiriam83@gmail.com">karimimiriam83@gmail.com</a></p>
+          <p>💬 WhatsApp: <a href="https://wa.me/254795286190" target="_blank">Chat on WhatsApp</a></p>
+        </footer>
+      
+        <!-- BACK TO TOP BUTTON -->
+        <button id="back-to-top" title="Back to Top">⬆</button>
+      
+        <!-- WHATSAPP FLOATING BUTTON -->
+        <a href="https://wa.me/254795286190" class="whatsapp-float" target="_blank">💬</a>
+      
+        <!-- AOS Script -->
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <script>
+          AOS.init();
+      
+          // Hamburger Menu
+          const hamburger = document.getElementById("hamburger");
+          const navLinks = document.getElementById("nav-links");
+      
+          hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+          });
+      
+          // Back to Top Button
+          const backToTop = document.getElementById("back-to-top");
+      
+          window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+              backToTop.classList.add("show");
+            } else {
+              backToTop.classList.remove("show");
+            }
+          });
+      
+          backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        </script>
+      
+      </body>
+      </html>
